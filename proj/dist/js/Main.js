@@ -51,9 +51,11 @@ define(["require", "exports", "./LoadingView", "./WindowA", "./WindowB", "./Wind
                 .add("test@atlas0_2", "images/test@atlas0_2.png")
                 .add("test@atlas0_3", "images/test@atlas0_3.png")
                 .add("test@atlas0_4", "images/test@atlas0_4.png")
-                .on("progress", _this.loadProgress, _this)
-                .on("complete", _this.resLoaded, _this)
+            //.on("progress", _this.loadProgress, _this)
+            //.on("complete", _this.resLoaded, _this)
                 .load();
+            loader.onComplete.add(() => {this.resLoaded(loader) } )
+            loader.onProgress.add(() => {this.loadProgress(loader) } )
             return _this;
         }
         Main.prototype.loadProgress = function (loader) {

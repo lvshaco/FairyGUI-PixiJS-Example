@@ -51,9 +51,10 @@ class Main extends PIXI.Application {
             .add("test@atlas0_2", "images/test@atlas0_2.png")
             .add("test@atlas0_3", "images/test@atlas0_3.png")
             .add("test@atlas0_4", "images/test@atlas0_4.png")
-            .on("progress", this.loadProgress, this)
-            .on("complete", this.resLoaded, this)
             .load();
+
+        loader.onComplete.add(() => {this.resLoaded(loader) } )
+        loader.onProgress.add(() => {this.loadProgress(loader) } )
     }
 
     private loadProgress(loader: PIXI.loaders.Loader): void {
